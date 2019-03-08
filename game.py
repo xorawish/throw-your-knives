@@ -1,5 +1,5 @@
 import arcade
-from models import World, Knife
+from models import World, Knife, Target
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -12,6 +12,7 @@ class GameWindow(arcade.Window):
 
         self.world = World(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.knife_sprite = ModelSprite('images/knife.png', model=self.world.knife)
+        self.target_sprite = ModelSprite('images/target.png', model=self.world.target)
 
     def update(self, delta):
         self.world.update(delta)
@@ -20,6 +21,7 @@ class GameWindow(arcade.Window):
         arcade.start_render()
 
         self.knife_sprite.draw()
+        self.target_sprite.draw()
 
 class ModelSprite(arcade.Sprite):
     def __init__(self, *args, **kwargs):
