@@ -23,6 +23,12 @@ class GameWindow(arcade.Window):
         self.knife_sprite.draw()
         self.target_sprite.draw()
 
+    def on_key_press(self, key, key_modifiers):
+        self.world.on_key_press(key, key_modifiers)
+
+    def on_mouse_press(self, x, y, button, modifiers):
+        self.world.on_mouse_press(x, y, button, modifiers)
+
 class ModelSprite(arcade.Sprite):
     def __init__(self, *args, **kwargs):
         self.model = kwargs.pop('model', None)
