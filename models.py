@@ -1,24 +1,34 @@
 import arcade
+import math
 
 class Knife:
     THROWN = False
+    STABBED = False
     THROW_VELOCITY = 15
-    
+
     def __init__(self, world, x, y):
         self.world = world
         self.x = x
         self.y = y
-        self.angle = 0
+        self.vx = 5
 
     def throw(self):
         self.THROWN = True
 
     def stab(self):
         self.THROWN = False
+        self.STABBED = True
 
     def update(self, delta):
         if self.THROWN:
             self.y += self.THROW_VELOCITY
+
+        if self.STABBED:
+            if self.x > self.world.width:
+                self.x = 0
+
+            else:
+                self.x += self.vx
 
     def hit(self, other, hit_size):
         return (abs(self.x - other.x) <= hit_size) and (abs(self.y - other.y) <= hit_size)
@@ -28,10 +38,14 @@ class Target:
         self.world = world
         self.x = x
         self.y = y
-        self.angle = 0
+        self.vx = 5
 
     def update(self, delta):
-        self.angle += 10
+        if self.x > self.world.width:
+            self.x = 0
+
+        else:
+            self.x += self.vx
 
 class World:
     def __init__(self, width, height):
