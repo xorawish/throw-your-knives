@@ -3,10 +3,12 @@ import arcade
 class Knife:
     THROWN = False
     THROW_VELOCITY = 15
+    
     def __init__(self, world, x, y):
         self.world = world
         self.x = x
         self.y = y
+        self.angle = 0
 
     def throw(self):
         self.THROWN = True
@@ -26,9 +28,10 @@ class Target:
         self.world = world
         self.x = x
         self.y = y
+        self.angle = 0
 
     def update(self, delta):
-        pass
+        self.angle += 10
 
 class World:
     def __init__(self, width, height):
@@ -39,6 +42,7 @@ class World:
         self.target = Target(self, width // 2, height // 2)
 
     def update(self, delta):
+        self.target.update(delta)
         self.knife.update(delta)
         if self.knife.hit(self.target, 60):
             self.knife.stab()
