@@ -13,6 +13,9 @@ class GameWindow(arcade.Window):
 
         self.world = World(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.knife_sprite = ModelSprite('images/knife.png', model=self.world.knife)
+        self.knife_sprite2 = ModelSprite('images/knife.png', model=self.world.knife2)
+        self.knife_sprite3 = ModelSprite('images/knife.png', model=self.world.knife3)
+        self.knife_sprite4 = ModelSprite('images/knife.png', model=self.world.knife4)
         self.target_sprite = ModelSprite('images/target.png', model=self.world.target)
 
     def update(self, delta):
@@ -22,6 +25,9 @@ class GameWindow(arcade.Window):
         arcade.start_render()
 
         self.knife_sprite.draw()
+        self.knife_sprite2.draw()
+        self.knife_sprite3.draw()
+        self.knife_sprite4.draw()
         self.target_sprite.draw()
 
     def on_key_press(self, key, key_modifiers):
@@ -39,6 +45,7 @@ class ModelSprite(arcade.Sprite):
     def sync_with_model(self):
         if self.model:
             self.set_position(self.model.x, self.model.y)
+            self.angle = self.model.angle
 
     def draw(self):
         self.sync_with_model()
