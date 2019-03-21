@@ -5,6 +5,7 @@ from models import World, Knife, Target
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+
 class GameWindow(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -12,11 +13,16 @@ class GameWindow(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
 
         self.world = World(SCREEN_WIDTH, SCREEN_HEIGHT)
-        self.knife_sprite = ModelSprite('images/knife.png', model=self.world.knife)
-        self.knife_sprite2 = ModelSprite('images/knife.png', model=self.world.knife2)
-        self.knife_sprite3 = ModelSprite('images/knife.png', model=self.world.knife3)
-        self.knife_sprite4 = ModelSprite('images/knife.png', model=self.world.knife4)
-        self.target_sprite = ModelSprite('images/target.png', model=self.world.target)
+        self.knife_sprite = ModelSprite('images/knife.png',
+                                        model=self.world.knife)
+        self.knife_sprite2 = ModelSprite('images/knife.png',
+                                         model=self.world.knife2)
+        self.knife_sprite3 = ModelSprite('images/knife.png',
+                                         model=self.world.knife3)
+        self.knife_sprite4 = ModelSprite('images/knife.png',
+                                         model=self.world.knife4)
+        self.target_sprite = ModelSprite('images/target.png',
+                                         model=self.world.target)
 
     def update(self, delta):
         self.world.update(delta)
@@ -36,6 +42,7 @@ class GameWindow(arcade.Window):
     def on_mouse_press(self, x, y, button, modifiers):
         self.world.on_mouse_press(x, y, button, modifiers)
 
+
 class ModelSprite(arcade.Sprite):
     def __init__(self, *args, **kwargs):
         self.model = kwargs.pop('model', None)
@@ -50,6 +57,7 @@ class ModelSprite(arcade.Sprite):
     def draw(self):
         self.sync_with_model()
         super().draw()
+
 
 def main():
     window = GameWindow(SCREEN_WIDTH, SCREEN_HEIGHT)

@@ -1,6 +1,7 @@
 import arcade
 import math
 
+
 class Knife:
     THROWN = False
     STABBED = False
@@ -25,14 +26,18 @@ class Knife:
             self.y += self.THROW_VELOCITY
 
         if self.STABBED:
-            self.x = (Target.RADIUS + self.RADIUS) * math.cos(self.vangle - 1.5) + self.world.width // 2
-            self.y = (Target.RADIUS + self.RADIUS) * math.sin(self.vangle - 1.5) + self.world.height // 2
+            self.x = (Target.RADIUS + self.RADIUS) * math.cos(
+                self.vangle - 1.5) + self.world.width // 2
+            self.y = (Target.RADIUS + self.RADIUS) * math.sin(
+                self.vangle - 1.5) + self.world.height // 2
 
             self.vangle += 0.087
             self.angle += Target.TARGET_ANGLE_SPEED
 
     def hit(self, other):
-        return (abs(self.x - other.x) <= self.RADIUS + Target.RADIUS) and (abs(self.y - other.y) <= self.RADIUS + Target.RADIUS)
+        return (abs(self.x - other.x) <= self.RADIUS + Target.RADIUS) and (
+            abs(self.y - other.y) <= self.RADIUS + Target.RADIUS)
+
 
 class Target:
     TARGET_ANGLE_SPEED = 5
@@ -46,6 +51,7 @@ class Target:
 
     def update(self, delta):
         self.angle += Target.TARGET_ANGLE_SPEED
+
 
 class World:
     def __init__(self, width, height):
