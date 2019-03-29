@@ -37,6 +37,13 @@ class GameWindow(arcade.Window):
         self.target_sprite.draw()
 
     def on_key_press(self, key, key_modifiers):
+        if(key == arcade.key.P):
+            if not self.world.is_started():
+                self.world.start()
+
+            else:
+                self.world.freeze()
+
         self.world.on_key_press(key, key_modifiers)
 
     def on_mouse_press(self, x, y, button, modifiers):

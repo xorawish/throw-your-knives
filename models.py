@@ -54,7 +54,12 @@ class Target:
 
 
 class World:
+    STATE_FROZEN = 1
+    STATE_STARTED = 2
+
     def __init__(self, width, height):
+        self.state = World.STATE_FROZEN
+
         self.width = width
         self.height = height
 
@@ -66,6 +71,9 @@ class World:
         self.target = Target(self, width // 2, height // 2)
 
     def update(self, delta):
+        if self.state == World.STATE_FROZEN:
+            return
+
         self.knife.update(delta)
 
         if self.knife.hit(self.target):
@@ -87,6 +95,15 @@ class World:
             self.knife4.stab()
 
         self.target.update(delta)
+
+    def start(self):
+        self.state = World.STATE_STARTED
+
+    def freeze(self):
+        self.state = World.STATE_FROZEN
+
+    def is_started(self):
+        return self.state == World.STATE_STARTED
 
     def on_key_press(self, key, key_modifiers):
         if key == arcade.key.SPACE:
