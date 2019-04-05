@@ -71,5 +71,6 @@ def main():
     arcade.set_window(window)
     arcade.run()
 
+
 if __name__ == '__main__':
     main()

@@ -120,15 +120,14 @@ class World:
                 self.knife4.throw()
 
     def on_mouse_press(self, x, y, button, modifiers):
-            if self.knife.THROWN is False:
-                self.knife.throw()
+        if self.knife.THROWN is False:
+            self.knife.throw()
 
-            elif self.knife2.THROWN is False:
-                self.knife2.throw()
+        elif self.knife2.THROWN is False:
+            self.knife2.throw()
 
-            elif self.knife3.THROWN is False:
-                self.knife3.throw()
+        elif self.knife3.THROWN is False:
+            self.knife3.throw()
 
-            elif self.knife4.THROWN is False:
-                self.knife4.throw()
-
+        elif self.knife4.THROWN is False:
+            self.knife4.throw()
