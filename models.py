@@ -100,11 +100,11 @@ class World:
 
         if self.knife4.hit(self.target):
             self.knife4.stab()
-        elif self.knife3.hit(self.knife) and self.knife.is_stabbed():
+        elif self.knife4.hit(self.knife) and self.knife.is_stabbed():
             self.freeze()
-        elif self.knife3.hit(self.knife2) and self.knife2.is_stabbed():
+        elif self.knife4.hit(self.knife2) and self.knife2.is_stabbed():
             self.freeze()
-        elif self.knife3.hit(self.knife3) and self.knife3.is_stabbed():
+        elif self.knife4.hit(self.knife3) and self.knife3.is_stabbed():
             self.freeze()
 
         self.target.update(delta)
