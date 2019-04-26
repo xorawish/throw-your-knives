@@ -21,6 +21,9 @@ class Knife:
     def stab(self):
         self.STABBED = True
 
+    def is_stabbed(self):
+        return self.STABBED
+
     def update(self, delta):
         if self.THROWN and self.STABBED is False:
             self.y += self.THROW_VELOCITY
@@ -81,16 +84,28 @@ class World:
 
         if self.knife2.hit(self.target):
             self.knife2.stab()
+        elif self.knife2.hit(self.knife) and self.knife.is_stabbed():
+            self.freeze()
 
         self.knife3.update(delta)
 
         if self.knife3.hit(self.target):
             self.knife3.stab()
+        elif self.knife3.hit(self.knife) and self.knife.is_stabbed():
+            self.freeze()
+        elif self.knife3.hit(self.knife2) and self.knife2.is_stabbed():
+            self.freeze()
 
         self.knife4.update(delta)
 
         if self.knife4.hit(self.target):
             self.knife4.stab()
+        elif self.knife3.hit(self.knife) and self.knife.is_stabbed():
+            self.freeze()
+        elif self.knife3.hit(self.knife2) and self.knife2.is_stabbed():
+            self.freeze()
+        elif self.knife3.hit(self.knife3) and self.knife3.is_stabbed():
+            self.freeze()
 
         self.target.update(delta)
 
