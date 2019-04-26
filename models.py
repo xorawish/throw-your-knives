@@ -31,7 +31,7 @@ class Knife:
             self.y = (Target.RADIUS + self.RADIUS) * math.sin(
                 self.vangle - 1.5) + self.world.height // 2
 
-            self.vangle += 0.087
+            self.vangle += 0.08725
             self.angle += Target.TARGET_ANGLE_SPEED
 
     def hit(self, other):
