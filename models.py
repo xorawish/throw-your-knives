@@ -6,7 +6,7 @@ class Knife:
     THROWN = False
     STABBED = False
     THROW_VELOCITY = 15
-    RADIUS = 15
+    RADIUS = 5
 
     def __init__(self, world, x, y):
         self.world = world
