@@ -29,12 +29,20 @@ class GameWindow(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-
-        self.knife_sprite.draw()
-        self.knife_sprite2.draw()
-        self.knife_sprite3.draw()
-        self.knife_sprite4.draw()
         self.target_sprite.draw()
+
+        if self.world.is_frozened():
+            start = "Press P to start"
+            intruction = "Press Spacebar to throw a knife"
+            caution = "Don't hit other knives on the target"
+            arcade.draw_text(start + "\n" + intruction + "\n" + caution,
+                             400, 500, arcade.color.WHITE, 18, align="center", anchor_x="center", anchor_y="center")
+
+        if self.world.is_started():
+            self.knife_sprite.draw()
+            self.knife_sprite2.draw()
+            self.knife_sprite3.draw()
+            self.knife_sprite4.draw()
 
     def on_key_press(self, key, key_modifiers):
         if(key == arcade.key.P):
