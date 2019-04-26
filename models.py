@@ -107,7 +107,7 @@ class World:
         return self.state == World.STATE_FROZEN
 
     def on_key_press(self, key, key_modifiers):
-        if key == arcade.key.SPACE:
+        if key == arcade.key.SPACE and self.state == World.STATE_STARTED:
             if self.knife.THROWN is False:
                 self.knife.throw()
 
@@ -121,14 +121,15 @@ class World:
                 self.knife4.throw()
 
     def on_mouse_press(self, x, y, button, modifiers):
-        if self.knife.THROWN is False:
-            self.knife.throw()
+        if self.state == World.STATE_STARTED:
+            if self.knife.THROWN is False:
+                self.knife.throw()
 
-        elif self.knife2.THROWN is False:
-            self.knife2.throw()
+            elif self.knife2.THROWN is False:
+                self.knife2.throw()
 
-        elif self.knife3.THROWN is False:
-            self.knife3.throw()
+            elif self.knife3.THROWN is False:
+                self.knife3.throw()
 
-        elif self.knife4.THROWN is False:
-            self.knife4.throw()
+            elif self.knife4.THROWN is False:
+                self.knife4.throw()

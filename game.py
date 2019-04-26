@@ -36,7 +36,8 @@ class GameWindow(arcade.Window):
             intruction = "Press Spacebar to throw a knife"
             caution = "Don't hit other knives on the target"
             arcade.draw_text(start + "\n" + intruction + "\n" + caution,
-                             400, 500, arcade.color.WHITE, 18, align="center", anchor_x="center", anchor_y="center")
+                             400, 500, arcade.color.WHITE, 18, align="center",
+                             anchor_x="center", anchor_y="center")
 
         if self.world.is_started():
             self.knife_sprite.draw()
