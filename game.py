@@ -8,7 +8,17 @@ SCREEN_HEIGHT = 600
 
 class GameWindow(arcade.Window):
     def __init__(self, width, height):
-        super().__init__(width, height)
+        super().__init__(width, height, title="Throw your knives!")
+
+        self.world = World(SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.knife_sprite = None
+        self.knife_sprite2 = None
+        self.knife_sprite3 = None
+        self.knife_sprite4 = None
+        self.target_sprite = ModelSprite('images/target.png',
+                                         model=self.world.target)
+
+    def setup(self):
 
         arcade.set_background_color(arcade.color.BLACK)
 
@@ -47,7 +57,9 @@ class GameWindow(arcade.Window):
 
     def on_key_press(self, key, key_modifiers):
         if(key == arcade.key.P):
+
             if not self.world.is_started():
+                self.setup()
                 self.world.start()
 
             else:
