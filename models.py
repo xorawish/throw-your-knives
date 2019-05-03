@@ -65,30 +65,25 @@ class World:
         self.score = 0
         self.width = width
         self.height = height
-
         self.knife = Knife(self, width // 2, height // 5)
         self.knife2 = Knife(self, width // 2, height // 5)
         self.knife3 = Knife(self, width // 2, height // 5)
         self.knife4 = Knife(self, width // 2, height // 5)
-
         self.target = Target(self, width // 2, height // 2)
 
     def update(self, delta):
 
         self.knife.update(delta)
-
         if self.knife.hit(self.target):
             self.knife.stab()
 
         self.knife2.update(delta)
-
         if self.knife2.hit(self.target):
             self.knife2.stab()
         elif self.knife2.hit(self.knife) and self.knife.is_stabbed():
             self.freeze()
 
         self.knife3.update(delta)
-
         if self.knife3.hit(self.target):
             self.knife3.stab()
         elif self.knife3.hit(self.knife) and self.knife.is_stabbed():
@@ -97,7 +92,6 @@ class World:
             self.freeze()
 
         self.knife4.update(delta)
-
         if self.knife4.hit(self.target):
             self.knife4.stab()
         elif self.knife4.hit(self.knife) and self.knife.is_stabbed():
