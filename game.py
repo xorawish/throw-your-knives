@@ -54,6 +54,9 @@ class GameWindow(arcade.Window):
             self.knife_sprite2.draw()
             self.knife_sprite3.draw()
             self.knife_sprite4.draw()
+            arcade.draw_text("Press P to restart" + "\n" + "Score: " +
+                             str(self.world.score), 400, 500, arcade.color.WHITE,
+                             18, align="center", anchor_x="center", anchor_y="center")
 
     def on_key_press(self, key, key_modifiers):
         if(key == arcade.key.P):

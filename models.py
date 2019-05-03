@@ -6,7 +6,7 @@ class Knife:
     THROWN = False
     STABBED = False
     THROW_VELOCITY = 15
-    RADIUS = 1
+    RADIUS = 15
 
     def __init__(self, world, x, y):
         self.world = world
@@ -38,8 +38,8 @@ class Knife:
             self.angle += Target.TARGET_ANGLE_SPEED
 
     def hit(self, other):
-        return (abs(self.x - other.x) <= self.RADIUS + Target.RADIUS) and (
-            abs(self.y - other.y) <= self.RADIUS + Target.RADIUS)
+        return (abs(self.x - other.x) <= self.RADIUS + other.RADIUS) and (
+            abs(self.y - other.y) <= self.RADIUS + other.RADIUS)
 
 
 class Target:
@@ -62,6 +62,7 @@ class World:
 
     def __init__(self, width, height):
         self.state = World.STATE_FROZEN
+        self.score = 0
 
         self.width = width
         self.height = height
