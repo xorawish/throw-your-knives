@@ -18,10 +18,13 @@ class GameWindow(arcade.Window):
         self.target_sprite = ModelSprite('images/target.png',
                                          model=self.world.target)
 
+        self.total_time = 0.0
+
     def setup(self):
 
         arcade.set_background_color(arcade.color.BLACK)
 
+        self.total_time = 0.0
         self.world = World(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.knife_sprite = ModelSprite('images/knife.png',
                                         model=self.world.knife)
@@ -35,6 +38,7 @@ class GameWindow(arcade.Window):
                                          model=self.world.target)
 
     def update(self, delta):
+        self.total_time += delta
         self.world.update(delta)
 
     def on_draw(self):
@@ -50,13 +54,18 @@ class GameWindow(arcade.Window):
                              anchor_x="center", anchor_y="center")
 
         if self.world.is_started():
+            minutes = int(self.total_time) // 60
+            seconds = int(self.total_time) % 60
+            timer = f"Timer: {minutes:02d}:{seconds:02d}"
+
             self.knife_sprite.draw()
             self.knife_sprite2.draw()
             self.knife_sprite3.draw()
             self.knife_sprite4.draw()
             arcade.draw_text("Press P to restart" + "\n" + "Score: " +
-                             str(self.world.score), 400, 500, arcade.color.WHITE,
-                             18, align="center", anchor_x="center", anchor_y="center")
+                             str(self.world.score) + "\n" + timer, 400, 500,
+                             arcade.color.WHITE, 18, align="center",
+                             anchor_x="center", anchor_y="center")
 
     def on_key_press(self, key, key_modifiers):
         if(key == arcade.key.P):

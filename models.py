@@ -63,7 +63,6 @@ class World:
     def __init__(self, width, height):
         self.state = World.STATE_FROZEN
         self.score = 0
-
         self.width = width
         self.height = height
 
@@ -126,26 +125,34 @@ class World:
         if key == arcade.key.SPACE and self.state == World.STATE_STARTED:
             if self.knife.THROWN is False:
                 self.knife.throw()
+                self.score += 1
 
             elif self.knife2.THROWN is False:
                 self.knife2.throw()
+                self.score += 1
 
             elif self.knife3.THROWN is False:
                 self.knife3.throw()
+                self.score += 1
 
             elif self.knife4.THROWN is False:
                 self.knife4.throw()
+                self.score += 1
 
     def on_mouse_press(self, x, y, button, modifiers):
         if self.state == World.STATE_STARTED:
             if self.knife.THROWN is False:
                 self.knife.throw()
+                self.score += 1
 
             elif self.knife2.THROWN is False:
                 self.knife2.throw()
+                self.score += 1
 
             elif self.knife3.THROWN is False:
                 self.knife3.throw()
+                self.score += 1
 
             elif self.knife4.THROWN is False:
                 self.knife4.throw()
+                self.score += 1
