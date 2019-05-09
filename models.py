@@ -59,9 +59,11 @@ class Target:
 class World:
     STATE_FROZEN = 1
     STATE_STARTED = 2
+    STATE_OVER = 3
+    STATE_MENU = 4
 
     def __init__(self, width, height):
-        self.state = World.STATE_FROZEN
+        self.state = World.STATE_MENU
         self.score = 0
         self.width = width
         self.height = height
@@ -69,6 +71,12 @@ class World:
         self.knife2 = Knife(self, width // 2, height // 5)
         self.knife3 = Knife(self, width // 2, height // 5)
         self.knife4 = Knife(self, width // 2, height // 5)
+        self.knife5 = Knife(self, width // 2, height // 5)
+        self.knife6 = Knife(self, width // 2, height // 5)
+        self.knife7 = Knife(self, width // 2, height // 5)
+        self.knife8 = Knife(self, width // 2, height // 5)
+        self.knife9 = Knife(self, width // 2, height // 5)
+        self.knife10 = Knife(self, width // 2, height // 5)
         self.target = Target(self, width // 2, height // 2)
 
     def update(self, delta):
@@ -81,25 +89,127 @@ class World:
         if self.knife2.hit(self.target):
             self.knife2.stab()
         elif self.knife2.hit(self.knife) and self.knife.is_stabbed():
-            self.freeze()
+            self.over()
 
         self.knife3.update(delta)
         if self.knife3.hit(self.target):
             self.knife3.stab()
         elif self.knife3.hit(self.knife) and self.knife.is_stabbed():
-            self.freeze()
+            self.over()
         elif self.knife3.hit(self.knife2) and self.knife2.is_stabbed():
-            self.freeze()
+            self.over()
 
         self.knife4.update(delta)
         if self.knife4.hit(self.target):
             self.knife4.stab()
         elif self.knife4.hit(self.knife) and self.knife.is_stabbed():
-            self.freeze()
+            self.over()
         elif self.knife4.hit(self.knife2) and self.knife2.is_stabbed():
-            self.freeze()
+            self.over()
         elif self.knife4.hit(self.knife3) and self.knife3.is_stabbed():
-            self.freeze()
+            self.over()
+
+        self.knife5.update(delta)
+        if self.knife5.hit(self.target):
+            self.knife5.stab()
+        elif self.knife5.hit(self.knife) and self.knife.is_stabbed():
+            self.over()
+        elif self.knife5.hit(self.knife2) and self.knife2.is_stabbed():
+            self.over()
+        elif self.knife5.hit(self.knife3) and self.knife3.is_stabbed():
+            self.over()
+        elif self.knife5.hit(self.knife4) and self.knife4.is_stabbed():
+            self.over()
+
+        self.knife6.update(delta)
+        if self.knife6.hit(self.target):
+            self.knife6.stab()
+        elif self.knife6.hit(self.knife) and self.knife.is_stabbed():
+            self.over()
+        elif self.knife6.hit(self.knife2) and self.knife2.is_stabbed():
+            self.over()
+        elif self.knife6.hit(self.knife3) and self.knife3.is_stabbed():
+            self.over()
+        elif self.knife6.hit(self.knife4) and self.knife4.is_stabbed():
+            self.over()
+        elif self.knife6.hit(self.knife5) and self.knife5.is_stabbed():
+            self.over()
+
+        self.knife7.update(delta)
+        if self.knife7.hit(self.target):
+            self.knife7.stab()
+        elif self.knife7.hit(self.knife) and self.knife.is_stabbed():
+            self.over()
+        elif self.knife7.hit(self.knife2) and self.knife2.is_stabbed():
+            self.over()
+        elif self.knife7.hit(self.knife3) and self.knife3.is_stabbed():
+            self.over()
+        elif self.knife7.hit(self.knife4) and self.knife4.is_stabbed():
+            self.over()
+        elif self.knife7.hit(self.knife5) and self.knife5.is_stabbed():
+            self.over()
+        elif self.knife7.hit(self.knife6) and self.knife6.is_stabbed():
+            self.over()
+
+        self.knife8.update(delta)
+        if self.knife8.hit(self.target):
+            self.knife8.stab()
+        elif self.knife8.hit(self.knife) and self.knife.is_stabbed():
+            self.over()
+        elif self.knife8.hit(self.knife2) and self.knife2.is_stabbed():
+            self.over()
+        elif self.knife8.hit(self.knife3) and self.knife3.is_stabbed():
+            self.over()
+        elif self.knife8.hit(self.knife4) and self.knife4.is_stabbed():
+            self.over()
+        elif self.knife8.hit(self.knife5) and self.knife5.is_stabbed():
+            self.over()
+        elif self.knife8.hit(self.knife6) and self.knife6.is_stabbed():
+            self.over()
+        elif self.knife8.hit(self.knife7) and self.knife7.is_stabbed():
+            self.over()
+
+        self.knife9.update(delta)
+        if self.knife9.hit(self.target):
+            self.knife9.stab()
+        elif self.knife9.hit(self.knife) and self.knife.is_stabbed():
+            self.over()
+        elif self.knife9.hit(self.knife2) and self.knife2.is_stabbed():
+            self.over()
+        elif self.knife9.hit(self.knife3) and self.knife3.is_stabbed():
+            self.over()
+        elif self.knife9.hit(self.knife4) and self.knife4.is_stabbed():
+            self.over()
+        elif self.knife9.hit(self.knife5) and self.knife5.is_stabbed():
+            self.over()
+        elif self.knife9.hit(self.knife6) and self.knife6.is_stabbed():
+            self.over()
+        elif self.knife9.hit(self.knife7) and self.knife7.is_stabbed():
+            self.over()
+        elif self.knife9.hit(self.knife8) and self.knife8.is_stabbed():
+            self.over()
+
+        self.knife10.update(delta)
+        if self.knife10.hit(self.target):
+            self.knife10.stab()
+        elif self.knife10.hit(self.knife) and self.knife.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife2) and self.knife2.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife3) and self.knife3.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife4) and self.knife4.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife5) and self.knife5.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife6) and self.knife6.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife7) and self.knife7.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife8) and self.knife8.is_stabbed():
+            self.over()
+        elif self.knife10.hit(self.knife9) and self.knife9.is_stabbed():
+            self.over()
 
         self.target.update(delta)
 
@@ -109,11 +219,23 @@ class World:
     def freeze(self):
         self.state = World.STATE_FROZEN
 
+    def over(self):
+        self.state = World.STATE_OVER
+
+    def menu(self):
+        self.state = World.STATE_MENU
+
     def is_started(self):
         return self.state == World.STATE_STARTED
 
     def is_frozened(self):
         return self.state == World.STATE_FROZEN
+
+    def is_overed(self):
+        return self.state == World.STATE_OVER
+
+    def is_menued(self):
+        return self.state == World.STATE_MENU
 
     def on_key_press(self, key, key_modifiers):
         if key == arcade.key.SPACE and self.state == World.STATE_STARTED:
@@ -133,6 +255,30 @@ class World:
                 self.knife4.throw()
                 self.score += 1
 
+            elif self.knife5.THROWN is False:
+                self.knife5.throw()
+                self.score += 1
+
+            elif self.knife6.THROWN is False:
+                self.knife6.throw()
+                self.score += 1
+
+            elif self.knife7.THROWN is False:
+                self.knife7.throw()
+                self.score += 1
+
+            elif self.knife8.THROWN is False:
+                self.knife8.throw()
+                self.score += 1
+
+            elif self.knife9.THROWN is False:
+                self.knife9.throw()
+                self.score += 1
+
+            elif self.knife10.THROWN is False:
+                self.knife10.throw()
+                self.score += 1
+
     def on_mouse_press(self, x, y, button, modifiers):
         if self.state == World.STATE_STARTED:
             if self.knife.THROWN is False:
@@ -149,4 +295,28 @@ class World:
 
             elif self.knife4.THROWN is False:
                 self.knife4.throw()
+                self.score += 1
+
+            elif self.knife5.THROWN is False:
+                self.knife5.throw()
+                self.score += 1
+
+            elif self.knife6.THROWN is False:
+                self.knife6.throw()
+                self.score += 1
+
+            elif self.knife7.THROWN is False:
+                self.knife7.throw()
+                self.score += 1
+
+            elif self.knife8.THROWN is False:
+                self.knife8.throw()
+                self.score += 1
+
+            elif self.knife9.THROWN is False:
+                self.knife9.throw()
+                self.score += 1
+
+            elif self.knife10.THROWN is False:
+                self.knife10.throw()
                 self.score += 1

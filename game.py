@@ -15,6 +15,12 @@ class GameWindow(arcade.Window):
         self.knife_sprite2 = None
         self.knife_sprite3 = None
         self.knife_sprite4 = None
+        self.knife_sprite5 = None
+        self.knife_sprite6 = None
+        self.knife_sprite7 = None
+        self.knife_sprite8 = None
+        self.knife_sprite9 = None
+        self.knife_sprite10 = None
         self.target_sprite = ModelSprite('images/target.png',
                                          model=self.world.target)
 
@@ -34,22 +40,35 @@ class GameWindow(arcade.Window):
                                          model=self.world.knife3)
         self.knife_sprite4 = ModelSprite('images/knife.png',
                                          model=self.world.knife4)
+        self.knife_sprite5 = ModelSprite('images/knife.png',
+                                         model=self.world.knife5)
+        self.knife_sprite6 = ModelSprite('images/knife.png',
+                                         model=self.world.knife6)
+        self.knife_sprite7 = ModelSprite('images/knife.png',
+                                         model=self.world.knife7)
+        self.knife_sprite8 = ModelSprite('images/knife.png',
+                                         model=self.world.knife8)
+        self.knife_sprite9 = ModelSprite('images/knife.png',
+                                         model=self.world.knife9)
+        self.knife_sprite10 = ModelSprite('images/knife.png',
+                                          model=self.world.knife10)
         self.target_sprite = ModelSprite('images/target.png',
                                          model=self.world.target)
 
     def update(self, delta):
-        self.total_time += delta
         self.world.update(delta)
+        self.total_time += delta
 
     def on_draw(self):
         arcade.start_render()
         self.target_sprite.draw()
 
-        if self.world.is_frozened():
+        if self.world.is_menued():
             start = "Press P to start"
             intruction = "Press Spacebar to throw a knife"
             caution = "Don't hit other knives on the target"
-            arcade.draw_text(start + "\n" + intruction + "\n" + caution,
+            arcade.draw_text("Throw your knives !" + "\n" + start + "\n" +
+                             intruction + "\n" + caution,
                              400, 500, arcade.color.WHITE, 18, align="center",
                              anchor_x="center", anchor_y="center")
 
@@ -58,26 +77,58 @@ class GameWindow(arcade.Window):
             seconds = int(self.total_time) % 60
             timer = f"Timer: {minutes:02d}:{seconds:02d}"
 
-            self.knife_sprite.draw()
-            self.knife_sprite2.draw()
-            self.knife_sprite3.draw()
-            self.knife_sprite4.draw()
-            arcade.draw_text("Press P to restart" + "\n" + "Score: " +
+            arcade.draw_text("Press P to pause" + "\n" + "Score: " +
                              str(self.world.score) + "\n" + timer, 400, 500,
                              arcade.color.WHITE, 18, align="center",
                              anchor_x="center", anchor_y="center")
 
-    def on_key_press(self, key, key_modifiers):
-        if(key == arcade.key.P):
+            self.knife_sprite.draw()
+            self.knife_sprite2.draw()
+            self.knife_sprite3.draw()
+            self.knife_sprite4.draw()
+            self.knife_sprite5.draw()
+            self.knife_sprite6.draw()
+            self.knife_sprite7.draw()
+            self.knife_sprite8.draw()
+            self.knife_sprite9.draw()
+            self.knife_sprite10.draw()
 
-            if not self.world.is_started():
+        if self.world.is_frozened():
+            start = "Press P to play"
+            intruction = "Press Spacebar to throw a knife"
+            caution = "Don't hit other knives on the target"
+            arcade.draw_text("Paused" + "\n" + start + "\n" + intruction +
+                             "\n" + caution, 400, 500, arcade.color.WHITE,
+                             18, align="center", anchor_x="center",
+                             anchor_y="center")
+
+        if self.world.is_overed():
+            minutes = int(self.total_time) // 60
+            seconds = int(self.total_time) % 60
+            timer = f"Timer: {minutes:02d}:{seconds:02d}"
+            arcade.draw_text("Game Over" + "\n" + "Press P to play again" +
+                             "\n" + "Score: " +
+                             str(self.world.score - 1), 400, 500,
+                             arcade.color.WHITE, 18, align="center",
+                             anchor_x="center", anchor_y="center")
+
+    def on_key_press(self, key, key_modifiers):
+        self.world.on_key_press(key, key_modifiers)
+        if key == arcade.key.P:
+
+            if self.world.state == self.world.STATE_MENU:
                 self.setup()
                 self.world.start()
 
-            else:
+            elif self.world.state == self.world.STATE_STARTED:
                 self.world.freeze()
 
-        self.world.on_key_press(key, key_modifiers)
+            elif self.world.state == self.world.STATE_FROZEN:
+                self.world.start()
+
+            elif self.world.state == self.world.STATE_OVER:
+                self.setup()
+                self.world.start()
 
     def on_mouse_press(self, x, y, button, modifiers):
         self.world.on_mouse_press(x, y, button, modifiers)
