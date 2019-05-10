@@ -191,10 +191,7 @@ class World:
             self.over()
 
         self.knife10.update(delta)
-        if self.knife10.hit(self.target):
-            self.knife10.stab()
-            self.win()
-        elif self.knife10.hit(self.knife) and self.knife.is_stabbed():
+        if self.knife10.hit(self.knife) and self.knife.is_stabbed():
             self.over()
         elif self.knife10.hit(self.knife2) and self.knife2.is_stabbed():
             self.over()
@@ -212,6 +209,9 @@ class World:
             self.over()
         elif self.knife10.hit(self.knife9) and self.knife9.is_stabbed():
             self.over()
+        elif self.knife10.hit(self.target):
+            self.knife10.stab()
+            self.win()
 
         self.target.update(delta)
 
