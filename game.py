@@ -77,8 +77,9 @@ class GameWindow(arcade.Window):
             seconds = int(self.total_time) % 60
             timer = f"Timer: {minutes:02d}:{seconds:02d}"
 
-            arcade.draw_text("Press P to pause" + "\n" + "Score: " +
-                             str(self.world.score) + "\n" + timer, 400, 500,
+            arcade.draw_text("Press P to pause" + "\n" + "Press R to restart" +
+                             "\n" + "Score: " + str(self.world.score) +
+                             "\n" + timer, 400, 500,
                              arcade.color.WHITE, 18, align="center",
                              anchor_x="center", anchor_y="center")
 
@@ -112,6 +113,16 @@ class GameWindow(arcade.Window):
                              arcade.color.WHITE, 18, align="center",
                              anchor_x="center", anchor_y="center")
 
+        if self.world.is_win():
+            minutes = int(self.total_time) // 60
+            seconds = int(self.total_time) % 60
+            timer = f"Timer: {minutes:02d}:{seconds:02d}"
+            arcade.draw_text("You win !!" + "\n" + "Press P to play again" +
+                             "\n" + "Score: " +
+                             str(self.world.score), 400, 500,
+                             arcade.color.WHITE, 18, align="center",
+                             anchor_x="center", anchor_y="center")
+
     def on_key_press(self, key, key_modifiers):
         self.world.on_key_press(key, key_modifiers)
         if key == arcade.key.P:
@@ -127,6 +138,16 @@ class GameWindow(arcade.Window):
                 self.world.start()
 
             elif self.world.state == self.world.STATE_OVER:
+                self.setup()
+                self.world.start()
+
+            elif self.world.state == self.world.STATE_WIN:
+                self.setup()
+                self.world.start()
+
+        if key == arcade.key.R:
+
+            if self.world.state == self.world.STATE_STARTED:
                 self.setup()
                 self.world.start()
 

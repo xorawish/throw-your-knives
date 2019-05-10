@@ -61,6 +61,7 @@ class World:
     STATE_STARTED = 2
     STATE_OVER = 3
     STATE_MENU = 4
+    STATE_WIN = 5
 
     def __init__(self, width, height):
         self.state = World.STATE_MENU
@@ -192,6 +193,7 @@ class World:
         self.knife10.update(delta)
         if self.knife10.hit(self.target):
             self.knife10.stab()
+            self.win()
         elif self.knife10.hit(self.knife) and self.knife.is_stabbed():
             self.over()
         elif self.knife10.hit(self.knife2) and self.knife2.is_stabbed():
@@ -225,6 +227,9 @@ class World:
     def menu(self):
         self.state = World.STATE_MENU
 
+    def win(self):
+        self.state = World.STATE_WIN
+
     def is_started(self):
         return self.state == World.STATE_STARTED
 
@@ -236,6 +241,9 @@ class World:
 
     def is_menued(self):
         return self.state == World.STATE_MENU
+
+    def is_win(self):
+        return self.state == World.STATE_WIN
 
     def on_key_press(self, key, key_modifiers):
         if key == arcade.key.SPACE and self.state == World.STATE_STARTED:
